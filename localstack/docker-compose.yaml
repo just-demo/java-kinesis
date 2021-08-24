@@ -1,0 +1,13 @@
+version: '3'
+services:
+  localstack:
+    image: localstack/localstack
+    ports:
+      - 4566:4566
+      - 4571:4571
+    environment:
+      - SERVICES=dynamodb,kinesis
+      - DEFAULT_REGION=us-east-1
+      - AWS_CBOR_DISABLE=1
+    volumes:
+      - ./init:/docker-entrypoint-initaws.d

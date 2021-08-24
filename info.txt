@@ -1,0 +1,12 @@
+docker-compose -f localstack/docker-compose.yaml up
+
+aws --endpoint-url http://localhost:4566 dynamodb list-tables
+aws --endpoint-url http://localhost:4566 dynamodb scan --table-name demo-consumer
+aws --endpoint-url http://localhost:4566 dynamodb delete-table --table-name demo-consumer
+aws --endpoint-url http://localhost:4566 dynamodb describe-table --table-name demo-consumer
+
+aws --endpoint-url http://localhost:4566 dynamodb update-item --table-name demo-consumer \
+    --key '{"leaseKey": {"S": "shardId-000000000000"}}' \
+    --update-expression 'SET checkpoint = :checkpoint' \
+    --expression-attribute-values '{":checkpoint": {"S": "LATEST"}}' \
+    --return-values ALL_NEW
