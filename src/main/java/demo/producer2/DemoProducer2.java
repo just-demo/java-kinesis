@@ -15,13 +15,9 @@ import com.amazonaws.services.kinesis.model.PutRecordRequest;
 
 public class DemoProducer2 {
 
-  private final AmazonKinesis kinesis;
-
-  public DemoProducer2() {
-    kinesis = AmazonKinesisClientBuilder.standard()
-        .withEndpointConfiguration(new EndpointConfiguration(LOCALSTACK_URL, LOCALSTACK_REGION))
-        .build();
-  }
+  private final AmazonKinesis kinesis = AmazonKinesisClientBuilder.standard()
+      .withEndpointConfiguration(new EndpointConfiguration(LOCALSTACK_URL, LOCALSTACK_REGION))
+      .build();
 
   public void send(Object record) {
     kinesis.putRecord(new PutRecordRequest()

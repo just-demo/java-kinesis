@@ -12,6 +12,7 @@ repositories {
 dependencies {
     implementation 'com.amazonaws:amazon-kinesis-client:1.14.4'
     implementation 'com.amazonaws:amazon-kinesis-producer:0.14.9'
+    implementation 'software.amazon.kinesis:amazon-kinesis-client:2.3.6'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
